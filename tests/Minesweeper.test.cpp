@@ -11,7 +11,7 @@ TEST(bomb, setBunchOfBombs){
 TEST(minesweeper, whenBombOnCordReturnFalse) {
   utils::Minesweeper game{};
   utils::BombCoord coords = utils::BombCoord{1,1};
-  game.getBomb()->setNewOne(coords);
+  game.getBomb()->setOne(coords);
   EXPECT_TRUE(game.getBomb()->isOccupiedCoord(coords));
 }
 

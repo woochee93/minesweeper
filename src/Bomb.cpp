@@ -5,17 +5,16 @@ using namespace utils;
 Bomb::Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val)
     : boardSize{boardSize_val}, numOfBomb{numOfBomb_val} {};
 
-void utils::Bomb::setNewOne(BombCoord coord) {
+void utils::Bomb::setOne(BombCoord coord) {
   bombsCoord.push_back(coord);
 }
 
 BombCoord Bomb::getRandomCoord() {
   const unsigned lowerBand = 0;
   const unsigned upperBand = boardSize - 1;
-  auto getRandomInRange = [&lowerBand, &upperBand]() {
-    return getRndNumber<int>(lowerBand, upperBand);
-  };
-  return BombCoord {getRandomInRange(), getRandomInRange()};
+  const int randomFirst = getRndNumber<int>(lowerBand, upperBand);
+  const int randomSecond = getRndNumber<int>(lowerBand, upperBand);
+  return BombCoord {randomFirst, randomSecond};
 };
 
 bool Bomb::isOccupiedCoord(BombCoord givenCoord) {
@@ -27,7 +26,7 @@ bool Bomb::isOccupiedCoord(BombCoord givenCoord) {
   return isCoordOccupied;
 }
 
-BombCoord Bomb::getFreeRandomCoords() {
+BombCoord Bomb::getNotOccupiedRandomCoords() {
   BombCoord newCoord = getRandomCoord();
   while (isOccupiedCoord(newCoord)) {
     newCoord = getRandomCoord();
@@ -37,7 +36,7 @@ BombCoord Bomb::getFreeRandomCoords() {
 
 void Bomb::setAll() {
   for (unsigned i{0}; i < numOfBomb; i++) {
-    setNewOne(getFreeRandomCoords());
+    setOne(getNotOccupiedRandomCoords());
   }
 };
 

@@ -19,8 +19,8 @@ class Bomb {
 public:
   Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
   void setAll();
-  void setNewOne(BombCoord coord);
-  BombCoord getFreeRandomCoords();
+  void setOne(BombCoord coord);
+  BombCoord getNotOccupiedRandomCoords();
   BombCoord getRandomCoord();
   bool isOccupiedCoord(BombCoord coord);
 };
