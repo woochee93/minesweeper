@@ -1,5 +1,4 @@
 #include "../include/Bomb.hpp"
-#include <iostream>
 
 using namespace utils;
 
@@ -11,25 +10,21 @@ void utils::Bomb::setBomb(unsigned x, unsigned y) {
 }
 
 BombCoords Bomb::generateRandomBombCoord() {
-  std::random_device dev;
-  std::mt19937 rng(dev());
-  unsigned upperBand = size - 1;
-  unsigned lowerBand = 0;
-  std::uniform_int_distribution<std::mt19937::result_type> dist6(lowerBand,
-                                                                 upperBand);
-
-  return BombCoords{dist6(rng), dist6(rng)};
+  const unsigned lowerBand = 0;
+  const unsigned upperBand = size - 1;
+  auto getRandomInRange = [&lowerBand, &upperBand]() {
+    return getRndNumber<int>(lowerBand, upperBand);
+  };
+  return BombCoords{getRandomInRange(), getRandomInRange()};
 };
 
-BombCoords Bomb::setNewBombInFreeCoords (){
-   BombCoords newBomb = generateRandomBombCoord();
+BombCoords Bomb::setNewBombInFreeCoords() {
+  BombCoords newBomb = generateRandomBombCoord();
   while (!isFree(newBomb)) {
-      newBomb = generateRandomBombCoord();
-    }
-    std::cout<<"New bomb first: "<<newBomb.first<<" second: "<<newBomb.second<<std::endl;
-    return newBomb;
+    newBomb = generateRandomBombCoord();
+  }
+  return newBomb;
 }
-
 
 void Bomb::setBunchOfBombs() {
   for (unsigned i{0}; i < bombNum; i++) {
@@ -37,17 +32,12 @@ void Bomb::setBunchOfBombs() {
   }
 };
 
-
-
-bool Bomb::isFree(BombCoords givenCord) {
-
-  std::function<bool(BombCoords)> isAlreadyExist{[&givenCord](BombCoords cords) {
-    bool sameFirstElement{givenCord.first == cords.first};
-    bool sameSecondElement{givenCord.second == cords.second};
-    return sameFirstElement && sameSecondElement;
-  }};
-
+bool Bomb::isFree(BombCoords givenCoord) {
+  auto isAlreadyExist = [&givenCoord](BombCoords& bombCoord) {
+    return isEqualPairs<BombCoords>(givenCoord, bombCoord);
+  };
   auto it = std::find_if(bombsCoord.begin(), bombsCoord.end(), isAlreadyExist);
   bool notOccupied{it == bombsCoord.end()};
+
   return notOccupied;
 }

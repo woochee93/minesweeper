@@ -3,9 +3,11 @@
 
 #include <algorithm>
 #include <functional>
-#include <random>
 #include <utility>
 #include <vector>
+
+#include "../utils/getRndNumber.cpp"
+#include "../utils/isEqualPairs.cpp"
 
 namespace utils {
 using BombCoords = std::pair<unsigned, unsigned>;
@@ -18,9 +20,9 @@ public:
   Bomb(const unsigned boardSize, const unsigned numOfBomb);
   void setBunchOfBombs();
   void setBomb(unsigned x, unsigned y);
-  BombCoords setNewBombInFreeCoords ();
+  BombCoords setNewBombInFreeCoords();
   BombCoords generateRandomBombCoord();
-  bool isFree(BombCoords cord);
+  bool isFree(BombCoords coord);
 };
 
 }; // namespace utils
