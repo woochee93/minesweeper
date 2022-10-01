@@ -18,7 +18,7 @@ TEST(minesweeper, whenBombOnCordReturnFalse) {
 TEST(minesweeper, generateRandomBombCoordShouldReturnProperRangedPair) {
   unsigned defaultSize = 3;
   utils::Minesweeper game{};
-  utils::BombCoords coords = game.getBomb()->generateRandomBombCoord();
+  utils::BombCoords coords = game.getBomb()->getRandomBombCoord();
   EXPECT_TRUE(coords.first <= (defaultSize - 1));
   EXPECT_TRUE(coords.second <= (defaultSize - 1));
 }

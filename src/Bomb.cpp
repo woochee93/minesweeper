@@ -9,7 +9,7 @@ void utils::Bomb::setBomb(unsigned x, unsigned y) {
   bombsCoord.push_back(utils::BombCoords(x, y));
 }
 
-BombCoords Bomb::generateRandomBombCoord() {
+BombCoords Bomb::getRandomBombCoord() {
   const unsigned lowerBand = 0;
   const unsigned upperBand = size - 1;
   auto getRandomInRange = [&lowerBand, &upperBand]() {
@@ -19,9 +19,9 @@ BombCoords Bomb::generateRandomBombCoord() {
 };
 
 BombCoords Bomb::setNewBombInFreeCoords() {
-  BombCoords newBomb = generateRandomBombCoord();
+  BombCoords newBomb = getRandomBombCoord();
   while (!isFree(newBomb)) {
-    newBomb = generateRandomBombCoord();
+    newBomb = getRandomBombCoord();
   }
   return newBomb;
 }

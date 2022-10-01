@@ -21,7 +21,7 @@ public:
   void setBunchOfBombs();
   void setBomb(unsigned x, unsigned y);
   BombCoords setNewBombInFreeCoords();
-  BombCoords generateRandomBombCoord();
+  BombCoords getRandomBombCoord();
   bool isFree(BombCoords coord);
 };
 
