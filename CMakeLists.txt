@@ -5,7 +5,8 @@ project(my_project)
 set(CMAKE_CXX_STANDARD 14)
 
 
-add_executable(app main.cpp)
+# add_executable(app main.cpp)
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -14,12 +15,15 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(googletest)
-add_compile_options(-lpthread -ggdb)
+add_compile_options(-Wall -Werror -pedantic -Wextra)
 enable_testing()
 
 add_executable(
   my_tests
-  tests.cpp
+  tests/Minesweeper.test.cpp
+  src/Minesweeper.cpp
+  src/Bomb.cpp
+
 )
 target_link_libraries(
   my_tests
