@@ -13,16 +13,16 @@ namespace utils {
 using BombCoords = std::pair<unsigned, unsigned>;
 class Bomb {
   std::vector<utils::BombCoords> bombsCoord{};
-  const unsigned size;
-  const unsigned bombNum;
+  const unsigned boardSize;
+  const unsigned numOfBomb;
 
 public:
-  Bomb(const unsigned boardSize, const unsigned numOfBomb);
-  void setBunchOfBombs();
-  void setBomb(unsigned x, unsigned y);
-  BombCoords setNewBombInFreeCoords();
-  BombCoords getRandomBombCoord();
-  bool isFree(BombCoords coord);
+  Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
+  void setAll();
+  void setNewOne(BombCoords coord);
+  BombCoords getFreeRandomCoords();
+  BombCoords getRandomCoord();
+  bool isOccupiedCoord(BombCoords coord);
 };
 
 }; // namespace utils

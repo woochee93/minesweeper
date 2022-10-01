@@ -2,4 +2,4 @@
 
 using namespace utils;
 
-Board::Board(const unsigned size) : boardSize(size){};
+Board::Board(const unsigned boardSize_val) : boardSize(boardSize_val){};

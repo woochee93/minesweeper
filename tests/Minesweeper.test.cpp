@@ -4,21 +4,21 @@
 
 TEST(bomb, setBunchOfBombs){
    utils::Minesweeper game{};
-   game.getBomb()->setBunchOfBombs();
+   game.getBomb()->setAll();
 }
 
 
 TEST(minesweeper, whenBombOnCordReturnFalse) {
   utils::Minesweeper game{};
   utils::BombCoords coords = utils::BombCoords{1,1};
-  game.getBomb()->setBomb(coords.first,coords.second);
-  EXPECT_FALSE(game.getBomb()->isFree(coords));
+  game.getBomb()->setNewOne(coords);
+  EXPECT_TRUE(game.getBomb()->isOccupiedCoord(coords));
 }
 
 TEST(minesweeper, generateRandomBombCoordShouldReturnProperRangedPair) {
   unsigned defaultSize = 3;
   utils::Minesweeper game{};
-  utils::BombCoords coords = game.getBomb()->getRandomBombCoord();
+  utils::BombCoords coords = game.getBomb()->getRandomCoord();
   EXPECT_TRUE(coords.first <= (defaultSize - 1));
   EXPECT_TRUE(coords.second <= (defaultSize - 1));
 }
