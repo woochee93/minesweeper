@@ -23,6 +23,7 @@ add_executable(
   tests/Minesweeper.test.cpp
   src/Minesweeper.cpp
   src/Bomb.cpp
+  src/Board.cpp
 
 )
 target_link_libraries(
