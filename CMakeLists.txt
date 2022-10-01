@@ -3,10 +3,13 @@ project(my_project)
 
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
-
+set(SOURCES
+  src/Minesweeper.cpp
+  src/Bomb.cpp
+  src/Board.cpp)
+ set (TEST_SOURCES tests/Minesweeper.test.cpp)
 
 # add_executable(app main.cpp)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -20,11 +23,8 @@ enable_testing()
 
 add_executable(
   my_tests
-  tests/Minesweeper.test.cpp
-  src/Minesweeper.cpp
-  src/Bomb.cpp
-  src/Board.cpp
-
+  ${SOURCES}
+  ${TEST_SOURCES}
 )
 target_link_libraries(
   my_tests
