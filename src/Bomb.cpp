@@ -1,10 +1,16 @@
 #include "../include/Bomb.hpp"
+#include <iostream>
+
+using namespace utils;
+
+Bomb::Bomb(const unsigned boardSize, const unsigned numOfBomb)
+    : size{boardSize}, bombNum{numOfBomb} {};
 
 void utils::Bomb::setBomb(unsigned x, unsigned y) {
   bombsCoord.push_back(utils::BombCoords(x, y));
 }
 
-utils::BombCoords utils::Bomb::generateRandomBombCoord() {
+BombCoords Bomb::generateRandomBombCoord() {
   std::random_device dev;
   std::mt19937 rng(dev());
   unsigned upperBand = size - 1;
@@ -15,17 +21,32 @@ utils::BombCoords utils::Bomb::generateRandomBombCoord() {
   return BombCoords{dist6(rng), dist6(rng)};
 };
 
-void utils::Bomb::setBunchOfBombs() {
-  bombsCoord.push_back(generateRandomBombCoord());
+BombCoords Bomb::setNewBombInFreeCoords (){
+   BombCoords newBomb = generateRandomBombCoord();
+  while (!isFree(newBomb)) {
+      newBomb = generateRandomBombCoord();
+    }
+    std::cout<<"New bomb first: "<<newBomb.first<<" second: "<<newBomb.second<<std::endl;
+    return newBomb;
+}
+
+
+void Bomb::setBunchOfBombs() {
+  for (unsigned i{0}; i < bombNum; i++) {
+    bombsCoord.push_back(setNewBombInFreeCoords());
+  }
 };
 
-bool utils::Bomb::isFree(BombCoords cord) {
 
-  std::function<bool(BombCoords)> isAlreadyExist{[&cord](BombCoords cords) {
-    bool sameFirstElement{cord.first == cords.first};
-    bool sameSecondElement{cord.second == cords.first};
+
+bool Bomb::isFree(BombCoords givenCord) {
+
+  std::function<bool(BombCoords)> isAlreadyExist{[&givenCord](BombCoords cords) {
+    bool sameFirstElement{givenCord.first == cords.first};
+    bool sameSecondElement{givenCord.second == cords.second};
     return sameFirstElement && sameSecondElement;
   }};
+
   auto it = std::find_if(bombsCoord.begin(), bombsCoord.end(), isAlreadyExist);
   bool notOccupied{it == bombsCoord.end()};
   return notOccupied;

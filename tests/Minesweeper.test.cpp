@@ -2,6 +2,11 @@
 #include <gtest/gtest.h>
 
 
+TEST(bomb, setBunchOfBombs){
+   utils::Minesweeper game{};
+   game.getBomb()->setBunchOfBombs();
+}
+
 
 TEST(minesweeper, whenBombOnCordReturnFalse) {
  // unsigned defaultSize = 3;
