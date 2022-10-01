@@ -10,19 +10,19 @@
 #include "../utils/isEqualPairs.cpp"
 
 namespace utils {
-using BombCoords = std::pair<unsigned, unsigned>;
+using BombCoord = std::pair<unsigned, unsigned>;
 class Bomb {
-  std::vector<utils::BombCoords> bombsCoord{};
+  std::vector<utils::BombCoord> bombsCoord{};
   const unsigned boardSize;
   const unsigned numOfBomb;
 
 public:
   Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
   void setAll();
-  void setNewOne(BombCoords coord);
-  BombCoords getFreeRandomCoords();
-  BombCoords getRandomCoord();
-  bool isOccupiedCoord(BombCoords coord);
+  void setNewOne(BombCoord coord);
+  BombCoord getFreeRandomCoords();
+  BombCoord getRandomCoord();
+  bool isOccupiedCoord(BombCoord coord);
 };
 
 }; // namespace utils
