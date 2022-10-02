@@ -4,7 +4,7 @@ using namespace utils;
 
 Board::Board(const unsigned size_val) : size(size_val){};
 
-void Board::fillAllWithZeros() {
+void Board::fillWithZeros() {
   for (unsigned numOfRow{0}; numOfRow < size; ++numOfRow) {
     pushNewRowWithZeros(numOfRow);
   }
@@ -16,31 +16,25 @@ void Board::pushNewRowWithZeros(unsigned numOfRow) {
   }
 }
 
-void Board::plantAllBombs(const std::vector<Field>& allBombs) {
-  for (auto& bombCoord : allBombs) {
-    auto it = std::find_if(board.begin(), board.end(),
-                           [&bombCoord](Field& boardCoord) {
-                             return boardCoord == bombCoord;
-                           });
-    it->value = 'B';
+void Board::plantAllBombs(const std::vector<Field>& allBombFields) {
+  for (auto& bombField : allBombFields) {
+    getSameField(bombField).value = bombField.value;
   }
 };
 
 void Board::printBoard() {
   for (unsigned i{0}; i < size * size; ++i) {
     std::cout << board.at(i).value;
-    if ((i % size) == size - 1) {
+    const bool isLastInRow = (i % size) == size - 1;
+    if (isLastInRow) {
       std::cout << std::endl;
     }
   }
 };
 
-BoardIterator Board::getBoardIteratorWithBomb(const Field& singleBombCoord) {
-  auto it = std::find_if(board.begin(), board.end(),
-                         [&singleBombCoord](Field& boardCoord) {
-                           return boardCoord == singleBombCoord;
-                         });
-  return it;
+Field& Board::getSameField(const Field& wantedField) {
+  auto sameFieldSeeker = std::find(board.begin(), board.end(),wantedField);                
+  return *sameFieldSeeker;
 };
 // void putNumbersAround(BoardIterator it) {
 //    //top y = 0
@@ -50,11 +44,11 @@ BoardIterator Board::getBoardIteratorWithBomb(const Field& singleBombCoord) {
 // };
 void Board::putNumbers(const std::vector<Field>& coordsOfAllBombs) {
   for (auto& singleBombCoord : coordsOfAllBombs) {
-    getBoardIteratorWithBomb(singleBombCoord);
+    getSameField(singleBombCoord);
   }
 };
 
 void Board::init(const std::vector<Field>& coordsOfAllBombs) {
-  fillAllWithZeros();
+  fillWithZeros();
   plantAllBombs(coordsOfAllBombs);
 }

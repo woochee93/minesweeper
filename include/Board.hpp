@@ -7,15 +7,14 @@
 
 #include "Field.hpp"
 namespace utils {
-  using BoardIterator = std::vector<utils::Field>::iterator;
 class Board {
   const unsigned size;
   std::vector<Field> board{};
   void pushNewRowWithZeros(unsigned numOfRow);
-  void fillAllWithZeros();
+  void fillWithZeros();
   void plantAllBombs(const std::vector<Field>& coordsOfAllBombs);
   void putNumbers(const std::vector<Field>& coordsOfAllBombs);
-  BoardIterator getBoardIteratorWithBomb(const Field& singleBombCoord);
+  Field& getSameField(const Field& singleBombCoord);
   public:
   Board(const unsigned size_val);
   void init(const std::vector<Field>& coordsOfAllBombs);

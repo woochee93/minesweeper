@@ -19,10 +19,7 @@ Field Bomb::getRandomCoord() {
 };
 
 bool Bomb::isOccupiedCoord(Field givenCoord) {
-  auto isAlreadyExist = [&givenCoord](Field& bombCoord) {
-    return givenCoord == bombCoord;
-  };
-  auto seekerOfGivenCoord = std::find_if(bombsCoord.begin(), bombsCoord.end(), isAlreadyExist);
+  auto seekerOfGivenCoord = std::find(bombsCoord.begin(), bombsCoord.end(), givenCoord);
   bool isCoordOccupied = seekerOfGivenCoord != bombsCoord.end();
   return isCoordOccupied;
 }
