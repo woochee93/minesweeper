@@ -22,7 +22,7 @@ TEST(bomb, setBunchOfBombs){
 
 TEST(minesweeper, whenBombOnCordReturnFalse) {
   utils::Minesweeper game{};
-  utils::BoardCoord coords = utils::BoardCoord{1,1};
+  utils::Field coords = utils::Field{1,1};
   game.getBomb()->setOne(coords);
   EXPECT_TRUE(game.getBomb()->isOccupiedCoord(coords));
 }
@@ -30,7 +30,7 @@ TEST(minesweeper, whenBombOnCordReturnFalse) {
 TEST(minesweeper, generateRandomBombCoordShouldReturnProperRangedPair) {
   unsigned defaultSize = 3;
   utils::Minesweeper game{};
-  utils::BoardCoord coords = game.getBomb()->getRandomCoord();
+  utils::Field coords = game.getBomb()->getRandomCoord();
   EXPECT_TRUE(coords.first <= (defaultSize - 1));
   EXPECT_TRUE(coords.second <= (defaultSize - 1));
 }

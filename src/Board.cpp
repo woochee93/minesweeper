@@ -4,22 +4,22 @@ using namespace utils;
 
 Board::Board(const unsigned size_val) : size(size_val){};
 
-void Board::fillBoardWithZero() {
+void Board::fillAllWithZeros() {
   for (unsigned numOfRow{0}; numOfRow < size; ++numOfRow) {
-    pushRowWithZero(numOfRow);
+    pushNewRowWithZeros(numOfRow);
   }
 }
 
-void Board::pushRowWithZero(unsigned numOfRow) {
+void Board::pushNewRowWithZeros(unsigned numOfRow) {
   for (unsigned numOfColumn{}; numOfColumn < size; ++numOfColumn) {
     board.push_back({numOfRow, numOfColumn, '0'});
   }
 }
 
-void Board::plantAllBombs(const std::vector<BoardCoord>& allBombs) {
+void Board::plantAllBombs(const std::vector<Field>& allBombs) {
   for (auto& bombCoord : allBombs) {
     auto it = std::find_if(board.begin(), board.end(),
-                           [&bombCoord](BoardCoord& boardCoord) {
+                           [&bombCoord](Field& boardCoord) {
                              return boardCoord == bombCoord;
                            });
     it->value = 'B';
@@ -35,26 +35,26 @@ void Board::printBoard() {
   }
 };
 
-BoardIterator Board::getBoardIteratorWithBomb(const BoardCoord& singleBombCoord) {
+BoardIterator Board::getBoardIteratorWithBomb(const Field& singleBombCoord) {
   auto it = std::find_if(board.begin(), board.end(),
-                         [&singleBombCoord](BoardCoord& boardCoord) {
+                         [&singleBombCoord](Field& boardCoord) {
                            return boardCoord == singleBombCoord;
                          });
   return it;
 };
-void putNumbersAround(BoardIterator it) {
-   //top y = 0
-   //bottom y = size -1
-   //left x = 0
-   //right x = size -1
-};
-void Board::putNumbers(const std::vector<BoardCoord>& coordsOfAllBombs) {
+// void putNumbersAround(BoardIterator it) {
+//    //top y = 0
+//    //bottom y = size -1
+//    //left x = 0
+//    //right x = size -1
+// };
+void Board::putNumbers(const std::vector<Field>& coordsOfAllBombs) {
   for (auto& singleBombCoord : coordsOfAllBombs) {
     getBoardIteratorWithBomb(singleBombCoord);
   }
 };
 
-void Board::init(const std::vector<BoardCoord>& coordsOfAllBombs) {
-  fillBoardWithZero();
+void Board::init(const std::vector<Field>& coordsOfAllBombs) {
+  fillAllWithZeros();
   plantAllBombs(coordsOfAllBombs);
 }

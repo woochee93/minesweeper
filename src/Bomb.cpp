@@ -5,21 +5,21 @@ using namespace utils;
 Bomb::Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val)
     : boardSize{boardSize_val}, numOfBomb{numOfBomb_val} {};
 
-void utils::Bomb::setOne(BoardCoord coord) {
+void utils::Bomb::setOne(Field coord) {
   bombsCoord.push_back(coord);
 }
 
-BoardCoord Bomb::getRandomCoord() {
+Field Bomb::getRandomCoord() {
   const unsigned lowerBand = 0;
   const unsigned upperBand = boardSize - 1;
   const unsigned randomFirst = getRndNumber<unsigned>(lowerBand, upperBand);
   const unsigned randomSecond = getRndNumber<unsigned>(lowerBand, upperBand);
   char value{'B'};
-  return BoardCoord {randomFirst, randomSecond,value};
+  return Field {randomFirst, randomSecond,value};
 };
 
-bool Bomb::isOccupiedCoord(BoardCoord givenCoord) {
-  auto isAlreadyExist = [&givenCoord](BoardCoord& bombCoord) {
+bool Bomb::isOccupiedCoord(Field givenCoord) {
+  auto isAlreadyExist = [&givenCoord](Field& bombCoord) {
     return givenCoord == bombCoord;
   };
   auto seekerOfGivenCoord = std::find_if(bombsCoord.begin(), bombsCoord.end(), isAlreadyExist);
@@ -27,8 +27,8 @@ bool Bomb::isOccupiedCoord(BoardCoord givenCoord) {
   return isCoordOccupied;
 }
 
-BoardCoord Bomb::getNotOccupiedRandomCoords() {
-  BoardCoord newCoord = getRandomCoord();
+Field Bomb::getNotOccupiedRandomCoords() {
+  Field newCoord = getRandomCoord();
   while (isOccupiedCoord(newCoord)) {
     newCoord = getRandomCoord();
   }
@@ -42,6 +42,6 @@ void Bomb::setAll() {
 };
 
 
-std::vector<BoardCoord> Bomb::getBombsCord(){
+std::vector<Field> Bomb::getBombsCord(){
     return bombsCoord;
   }

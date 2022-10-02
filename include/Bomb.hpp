@@ -6,23 +6,23 @@
 #include <utility>
 #include <vector>
 
-#include "BoardCoord.hpp"
+#include "Field.hpp"
 #include "../utils/getRndNumber.cpp"
 
 namespace utils {
 class Bomb {
-  std::vector<BoardCoord> bombsCoord{};
+  std::vector<Field> bombsCoord{};
   const unsigned boardSize;
   const unsigned numOfBomb;
 
 public:
   Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
   void setAll();
-  void setOne(BoardCoord coord);
-  BoardCoord getNotOccupiedRandomCoords();
-  BoardCoord getRandomCoord();
-  bool isOccupiedCoord(BoardCoord coord);
-  std::vector<BoardCoord> getBombsCord();
+  void setOne(Field coord);
+  Field getNotOccupiedRandomCoords();
+  Field getRandomCoord();
+  bool isOccupiedCoord(Field coord);
+  std::vector<Field> getBombsCord();
 
 };
 

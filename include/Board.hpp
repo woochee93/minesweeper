@@ -5,20 +5,20 @@
 #include <iostream>
 #include <algorithm>
 
-#include "BoardCoord.hpp"
+#include "Field.hpp"
 namespace utils {
-  using BoardIterator = std::vector<utils::BoardCoord>::iterator;
+  using BoardIterator = std::vector<utils::Field>::iterator;
 class Board {
   const unsigned size;
-  std::vector<BoardCoord> board{};
-  void pushRowWithZero(unsigned numOfRow);
-  void fillBoardWithZero();
-  void plantAllBombs(const std::vector<BoardCoord>& coordsOfAllBombs);
-  void putNumbers(const std::vector<BoardCoord>& coordsOfAllBombs);
-  BoardIterator Board::getBoardIteratorWithBomb(const BoardCoord& singleBombCoord);
+  std::vector<Field> board{};
+  void pushNewRowWithZeros(unsigned numOfRow);
+  void fillAllWithZeros();
+  void plantAllBombs(const std::vector<Field>& coordsOfAllBombs);
+  void putNumbers(const std::vector<Field>& coordsOfAllBombs);
+  BoardIterator getBoardIteratorWithBomb(const Field& singleBombCoord);
   public:
   Board(const unsigned size_val);
-  void init(const std::vector<BoardCoord>& coordsOfAllBombs);
+  void init(const std::vector<Field>& coordsOfAllBombs);
   void printBoard();
 
 };

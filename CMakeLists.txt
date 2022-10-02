@@ -5,7 +5,7 @@ project(my_project)
 set(CMAKE_CXX_STANDARD 14)
 set(SOURCES
   src/Board.cpp
-  src/BoardCoord.cpp
+  src/Field.cpp
   src/Bomb.cpp
   src/Minesweeper.cpp
   )
