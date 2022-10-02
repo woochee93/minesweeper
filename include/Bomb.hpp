@@ -6,23 +6,22 @@
 #include <utility>
 #include <vector>
 
+#include "BoardCoord.hpp"
 #include "../utils/getRndNumber.cpp"
-#include "../utils/isEqualPairs.cpp"
 
 namespace utils {
-using BombCoord = std::pair<unsigned, unsigned>;
 class Bomb {
-  std::vector<utils::BombCoord> bombsCoord{};
+  std::vector<BoardCoord> bombsCoord{};
   const unsigned boardSize;
   const unsigned numOfBomb;
 
 public:
   Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
   void setAll();
-  void setOne(BombCoord coord);
-  BombCoord getNotOccupiedRandomCoords();
-  BombCoord getRandomCoord();
-  bool isOccupiedCoord(BombCoord coord);
+  void setOne(BoardCoord coord);
+  BoardCoord getNotOccupiedRandomCoords();
+  BoardCoord getRandomCoord();
+  bool isOccupiedCoord(BoardCoord coord);
 };
 
 }; // namespace utils

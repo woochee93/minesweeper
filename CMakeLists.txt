@@ -4,10 +4,12 @@ project(my_project)
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
 set(SOURCES
-  src/Minesweeper.cpp
+  src/Board.cpp
+  src/BoardCoord.cpp
   src/Bomb.cpp
-  src/Board.cpp)
- set (TEST_SOURCES tests/Minesweeper.test.cpp)
+  src/Minesweeper.cpp
+  )
+set(TEST_SOURCES tests/Minesweeper.test.cpp)
 
 # add_executable(app main.cpp)
 include(FetchContent)

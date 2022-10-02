@@ -5,29 +5,29 @@ using namespace utils;
 Bomb::Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val)
     : boardSize{boardSize_val}, numOfBomb{numOfBomb_val} {};
 
-void utils::Bomb::setOne(BombCoord coord) {
+void utils::Bomb::setOne(BoardCoord coord) {
   bombsCoord.push_back(coord);
 }
 
-BombCoord Bomb::getRandomCoord() {
+BoardCoord Bomb::getRandomCoord() {
   const unsigned lowerBand = 0;
   const unsigned upperBand = boardSize - 1;
-  const int randomFirst = getRndNumber<int>(lowerBand, upperBand);
-  const int randomSecond = getRndNumber<int>(lowerBand, upperBand);
-  return BombCoord {randomFirst, randomSecond};
+  const unsigned randomFirst = getRndNumber<unsigned>(lowerBand, upperBand);
+  const unsigned randomSecond = getRndNumber<unsigned>(lowerBand, upperBand);
+  return BoardCoord {randomFirst, randomSecond};
 };
 
-bool Bomb::isOccupiedCoord(BombCoord givenCoord) {
-  auto isAlreadyExist = [&givenCoord](BombCoord& bombCoord) {
-    return isEqualPairs<BombCoord>(givenCoord, bombCoord);
+bool Bomb::isOccupiedCoord(BoardCoord givenCoord) {
+  auto isAlreadyExist = [&givenCoord](BoardCoord& bombCoord) {
+    return givenCoord == bombCoord;
   };
   auto seekerOfGivenCoord = std::find_if(bombsCoord.begin(), bombsCoord.end(), isAlreadyExist);
   bool isCoordOccupied = seekerOfGivenCoord != bombsCoord.end();
   return isCoordOccupied;
 }
 
-BombCoord Bomb::getNotOccupiedRandomCoords() {
-  BombCoord newCoord = getRandomCoord();
+BoardCoord Bomb::getNotOccupiedRandomCoords() {
+  BoardCoord newCoord = getRandomCoord();
   while (isOccupiedCoord(newCoord)) {
     newCoord = getRandomCoord();
   }
