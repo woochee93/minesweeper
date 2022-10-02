@@ -4,6 +4,7 @@ namespace utils {
 struct BoardCoord {
   unsigned first;
   unsigned second;
+  char value{'0'};
   bool operator==(const BoardCoord& other) const;
 };
 } // namespace utils

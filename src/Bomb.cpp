@@ -14,7 +14,8 @@ BoardCoord Bomb::getRandomCoord() {
   const unsigned upperBand = boardSize - 1;
   const unsigned randomFirst = getRndNumber<unsigned>(lowerBand, upperBand);
   const unsigned randomSecond = getRndNumber<unsigned>(lowerBand, upperBand);
-  return BoardCoord {randomFirst, randomSecond};
+  char value{'B'};
+  return BoardCoord {randomFirst, randomSecond,value};
 };
 
 bool Bomb::isOccupiedCoord(BoardCoord givenCoord) {
