@@ -22,7 +22,7 @@ void Board::plantAllBombs(const std::vector<Field>& allBombFields) {
   }
 };
 
-void Board::printBoard() {
+void Board::print() {
   for (unsigned i{0}; i < size * size; ++i) {
     std::cout << board.at(i).value;
     const bool isLastInRow = (i % size) == size - 1;
@@ -33,7 +33,7 @@ void Board::printBoard() {
 };
 
 Field& Board::getSameField(const Field& wantedField) {
-  auto sameFieldSeeker = std::find(board.begin(), board.end(),wantedField);                
+  auto sameFieldSeeker = std::find(board.begin(), board.end(), wantedField);
   return *sameFieldSeeker;
 };
 // void putNumbersAround(BoardIterator it) {

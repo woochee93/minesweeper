@@ -6,9 +6,9 @@ Minesweeper::Minesweeper(const unsigned size, const unsigned numOfBomb)
     : bomb{std::make_shared<Bomb>(size, numOfBomb)},
       board{std::make_shared<Board>(size)} {};
 
-void Minesweeper::initGame() {
+void Minesweeper::init() {
   getBomb()->setAll();
-  auto coordOfAllBombs = bomb->getBombsCord();
+  auto coordOfAllBombs = bomb->getBombFields();
   board->init(coordOfAllBombs);
 }
 

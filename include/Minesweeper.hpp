@@ -13,7 +13,7 @@ class Minesweeper {
 
 public:
   Minesweeper(const unsigned size = 3, const unsigned numOfBomb = 3);
-  void initGame();
+  void init();
   std::shared_ptr<Bomb> getBomb();
   std::shared_ptr<Board> getBoard();
 

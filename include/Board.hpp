@@ -18,7 +18,7 @@ class Board {
   public:
   Board(const unsigned size_val);
   void init(const std::vector<Field>& coordsOfAllBombs);
-  void printBoard();
+  void print();
 
 };
 }

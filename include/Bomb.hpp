@@ -11,7 +11,7 @@
 
 namespace utils {
 class Bomb {
-  std::vector<Field> bombsCoord{};
+  std::vector<Field> bombFields{};
   const unsigned boardSize;
   const unsigned numOfBomb;
 
@@ -19,13 +19,11 @@ public:
   Bomb(const unsigned boardSize_val, const unsigned numOfBomb_val);
   void setAll();
   void setOne(Field coord);
-  Field getNotOccupiedRandomCoords();
-  Field getRandomCoord();
-  bool isOccupiedCoord(Field coord);
-  std::vector<Field> getBombsCord();
-
+  Field getNotOccupiedRandomField();
+  Field getRandomField();
+  bool isOccupiedField(Field coord);
+  std::vector<Field> getBombFields();
 };
-
 }; // namespace utils
 
 #endif //_BOMB_HPP_
