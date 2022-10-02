@@ -41,3 +41,7 @@ void Bomb::setAll() {
   }
 };
 
+
+std::vector<BoardCoord> Bomb::getBombsCord(){
+    return bombsCoord;
+  }

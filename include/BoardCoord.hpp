@@ -5,6 +5,7 @@ struct BoardCoord {
   unsigned first;
   unsigned second;
   char value{'0'};
+  bool reveal{false};
   bool operator==(const BoardCoord& other) const;
 };
 } // namespace utils

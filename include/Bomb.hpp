@@ -22,6 +22,8 @@ public:
   BoardCoord getNotOccupiedRandomCoords();
   BoardCoord getRandomCoord();
   bool isOccupiedCoord(BoardCoord coord);
+  std::vector<BoardCoord> getBombsCord();
+
 };
 
 }; // namespace utils

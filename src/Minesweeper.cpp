@@ -3,7 +3,14 @@
 using namespace utils;
 
 Minesweeper::Minesweeper(const unsigned size, const unsigned numOfBomb)
-    : board{std::make_shared<Board>(size)}, bomb{std::make_shared<Bomb>(size, numOfBomb)} {};
+    : bomb{std::make_shared<Bomb>(size, numOfBomb)},
+      board{std::make_shared<Board>(size)} {};
+
+void Minesweeper::initGame() {
+  getBomb()->setAll();
+  auto coordOfAllBombs = bomb->getBombsCord();
+  board->init(coordOfAllBombs);
+}
 
 std::shared_ptr<Bomb> Minesweeper::getBomb() { return bomb; }
 

@@ -8,13 +8,15 @@
 namespace utils {
 
 class Minesweeper {
-  std::shared_ptr<Board> board;
   std::shared_ptr<Bomb> bomb;
+  std::shared_ptr<Board> board;
 
 public:
   Minesweeper(const unsigned size = 3, const unsigned numOfBomb = 3);
+  void initGame();
   std::shared_ptr<Bomb> getBomb();
   std::shared_ptr<Board> getBoard();
+
 };
 } // namespace utils
 

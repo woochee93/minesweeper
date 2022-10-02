@@ -1,5 +1,17 @@
 #include "../include/Minesweeper.hpp"
 #include <gtest/gtest.h>
+TEST(board, printBoardSize9) {
+   utils::Minesweeper game{9,9};
+   game.initGame();
+   game.getBoard()->printBoard();
+}
+
+
+TEST(board, printBoardSize3) {
+   utils::Minesweeper game{};
+   game.initGame();
+   game.getBoard()->printBoard();
+}
 
 
 TEST(bomb, setBunchOfBombs){
